@@ -1,0 +1,1 @@
+select segment_name,TABLESPACE_NAME ,segment_type, bytes/1024/1024/1024 size_gb from dba_segments where segment_name = '&segment_name' or segment_name in (select index_name from dba_indexes where table_name='&tablename' and table_owner='&owner');
