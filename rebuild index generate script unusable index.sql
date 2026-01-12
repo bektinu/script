@@ -1,0 +1,24 @@
+SELECT 
+    'ALTER INDEX "' || di.OWNER || '"."' || di.INDEX_NAME || 
+    '" REBUILD TABLESPACE AP_CRM_DATA PARALLEL ' || 
+    CASE 
+        WHEN ds.BYTES/1024/1024/1024 >= 25 THEN 8
+        WHEN ds.BYTES/1024/1024/1024 >= 10 THEN 4
+        WHEN ds.BYTES/1024/1024/1024 >= 5  THEN 2
+        ELSE 1
+    END || ';' AS rebuild_script
+FROM 
+    DBA_INDEXES di
+JOIN 
+    DBA_SEGMENTS ds 
+    ON di.INDEX_NAME = ds.SEGMENT_NAME 
+    AND di.OWNER = ds.OWNER
+WHERE 
+    di.STATUS = 'UNUSABLE'
+    AND di.TABLESPACE_NAME = 'AP_CRM'
+    AND di.OWNER = 'AP_CRM'
+    AND ds.SEGMENT_TYPE = 'INDEX'
+    AND ds.TABLESPACE_NAME = 'AP_CRM'
+    AND ds.SEGMENT_NAME NOT LIKE 'SYS_IL%' -- Skip LOB internal indexes
+ORDER BY 
+    ds.BYTES DESC;
