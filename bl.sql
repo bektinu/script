@@ -7,7 +7,6 @@ PROMPT
 PROMPT +------------------------------------------------------------------------+
 PROMPT | Report   : Blocking Locks                                              |
 PROMPT | Instance : &current_instance                                           |
-PROMPT | Created by Bekti Nugroho                                               |  
 PROMPT +------------------------------------------------------------------------+
 
 SET ECHO        OFF
@@ -271,3 +270,5 @@ WHERE
 ORDER BY
     i.instance_name
   , l.session_id;
+
+
