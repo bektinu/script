@@ -1,0 +1,413 @@
+Module to upskilling postgresql 2026
+https://haiderdba.gumroad.com/l/ccget
+
+PostgreSQL Health Report v2.0 (Stored Functions + SQL Script + 60+ SQL Queries)
+
+A professional PostgreSQL health check and monitoring tool that helps you detect performance issues, stability risks, and security problems before they turn into outages with FIX commands.
+
+Built for DBAs, developers, and DevOps engineers who run PostgreSQL in production.
+
+
+
+What This Does
+
+This is not a dashboard.
+This is not an AI agent.
+
+This is a database-native PostgreSQL health check that operates your Postgres database using SQL. You can either run it as a standalone SQL script or use the stored function file to execute it inside or outside PostgreSQL, then access the results through views.
+
+You get:
+
+
+
+
+
+Immediate visibility into database health
+
+
+
+Setup Automation alerts based on views output
+
+
+
+No external dependencies
+
+
+
+No manual script juggling
+
+
+
+PostgreSQL Health Report v2.0.2 - Complete Section Overview
+
+Section 1: Database Environment & Metadata
+
+
+
+
+
+Database Metadata (server host, port, version, uptime, size, connections)
+
+
+
+Section 2: Critical Alerts - Immediate Action Needed
+
+
+
+
+
+Critical Bloat (>30% Dead Tuples)
+
+
+
+Tables Never Analyzed
+
+
+
+Stale Statistics (>20% modifications)
+
+
+
+Foreign Keys Without Index
+
+
+
+XID Wraparound Risk (Database Level)
+
+
+
+Wraparound Risk (XID or Multixact) - Table Level
+
+
+
+Section 3: Connection Pool Health
+
+
+
+
+
+Connection Pool Status (utilization %)
+
+
+
+Connection States Breakdown (active, idle, idle in transaction)
+
+
+
+Idle Connections (>5 min)
+
+
+
+Aborted Transactions
+
+
+
+Long-Running Transactions (Holding Locks)
+
+
+
+Section 4: Lock Contention & Blocking Queries
+
+
+
+
+
+Blocking Locks (blocked PID by blocking PID)
+
+
+
+Lock Types Summary (by mode and locktype)
+
+
+
+Section 5: Query Performance & Slow Queries
+
+
+
+
+
+pg_stat_statements Extension Status
+
+
+
+Slow Queries (Avg >100ms) - PostgreSQL 13+ compatible
+
+
+
+Active Long-Running Queries (>30 seconds)
+
+
+
+Prepared Statement Leaks
+
+
+
+Prepared Statement Summary (count and potential leaks)
+
+Section 5B: Wait Events Analysis
+
+
+
+
+
+Wait Events Summary
+
+
+
+Active Queries by Wait Event
+
+
+
+Wait Event Details (Top Waiting Queries)
+
+
+
+I/O Timing Analysis (track_io_timing status)
+
+
+
+Section 6: Buffer Cache Hit Ratio & I/O Efficiency
+
+
+
+
+
+Overall Cache Performance (cache hit ratio %)
+
+
+
+Table Cache Performance (Worst performers)
+
+
+
+Section 7: Table Bloat & Dead Tuple Analysis
+
+
+
+
+
+Most Bloated Tables (dead tuple %)
+
+
+
+Section 8: Vacuum & Autovacuum Health
+
+
+
+
+
+Vacuum Health Score (overall status)
+
+
+
+Active Maintenance Operations (vacuum/analyze in progress)
+
+
+
+High Modification Rate Tables (Bloat Risk)
+
+
+
+Section 9: Index Health & Usage Analysis
+
+
+
+
+
+Unused Indexes (Consider Dropping)
+
+
+
+Low-Usage Indexes
+
+
+
+Tables Needing Indexes (High Sequential Scans)
+
+
+
+Seq Scan vs Index Scan Analysis
+
+
+
+Index Efficiency (Rows Scanned vs Returned)
+
+
+
+Duplicate Indexes (Same Columns)
+
+Section 9B: Partitioning Health
+
+
+
+
+
+Partitioned Table Summary
+
+
+
+Partition Size Imbalance Detection
+
+
+
+Missing Partition Indexes
+
+
+
+Partition Constraints
+
+
+
+Section 10: Disk Usage & Largest Tables
+
+
+
+
+
+Largest Tables (total size, table size, index size)
+
+
+
+JSONB Columns Missing GIN Index
+
+
+
+Section 11: Replication Health & Lag
+
+
+
+
+
+Replication Status (send lag, replay lag, time lag)
+
+
+
+Replication Slots (active/inactive, lag)
+
+
+
+WAL Archive Status (archived/failed count)
+
+
+
+WAL Generation Rate (wal_level, total WAL)
+
+
+
+Section 12: Transaction Performance & Throughput
+
+
+
+
+
+Transaction Stats (commit, rollback, deadlocks, conflicts)
+
+
+
+Section 13: Checkpoint & Background Writer Statistics
+
+
+
+
+
+Checkpoint Stats (timed vs requested, write/sync time)
+
+
+
+
+
+PostgreSQL 17+ compatible (pg_stat_checkpointer)
+
+
+
+PostgreSQL <17 compatible (pg_stat_bgwriter)
+
+
+
+Section 14: Database-Wide Summary
+
+
+
+
+
+Overall Health Summary (tables, size, dead %, issues count)
+
+
+
+Section 15: Recommended Immediate Actions
+
+
+
+
+
+Priority-Based Fix Commands:
+
+
+
+
+
+P1: Never Analyzed tables
+
+
+
+P1: Critical Bloat (>30%)
+
+
+
+P2: Very Stale Stats (>20%)
+
+
+
+P3: Moderate Bloat (>10%)
+
+
+
+P4: Minor Issues
+
+
+
+Section 16: Security & Permissions
+
+
+
+
+
+Superuser Accounts
+
+
+
+Users with Excessive Privileges (CREATEDB, CREATEROLE)
+
+
+
+Public Schema Grants (CREATE privilege)
+
+
+
+Tables Accessible to PUBLIC
+
+
+
+Password Policy Violations (no expiry, expired)
+
+
+
+Unused Roles (can login but never connected)
+
+
+
+SSL/Encryption Connection Status
+
+
+
+Section Report Metadata
+
+
+
+
+
+Execution Summary (execution time, version, database info)
+
+
+
+Total: 16 Sections, 60+ Queries, 4 Views, 2 Helper Functions
